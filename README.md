@@ -21,7 +21,9 @@ Toolok:
 Ha sikeresen lefut a build akkor a newman/postman az adatbázisba bejegyez egy admint, és leállítja magát.
 A prometheus és grafana monitorozásra szolgál ami a node szervert figyelni, prometheus végzi az adatgyűjtést amit össze kötöttem a grafana-val ami pedig egy jól kezelhető vizualizációs felületet biztosít a beérkező adatoknak.
 Minden docker-compose down --volumes után a grafana vizuális felületén összekell kapcsolni a prometheust. Grafana vizuális felületén : Connections -> Data sources -> prometheus  Prometheus server URL : http://prometheus:9090
-Ezután a dashboardon lehet customizált grafikonokat létehozni PromQL-ek segíségével. Megadok 2 ilyen PromQL: 
+Ezután a dashboardon lehet customizált grafikonokat létehozni PromQL-ek segíségével.
+
+Megadok 2 ilyen PromQL: 
 
 http_requests_total
 
