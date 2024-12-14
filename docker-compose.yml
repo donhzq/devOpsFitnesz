@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  angular:
+    build:
+      context: ./your-angular-project
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - node
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.101
+
+  node:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URL=mongodb://mongo:27017/fitnesz
+    depends_on:
+      - mongo
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.102
+    
+
+  mongo:
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.103
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - angular
+      - node
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.104
+    
+  bind9:
+    image: internetsystemsconsortium/bind9:9.18
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./bind9/config:/etc/bind:ro
+      - ./bind9/cache:/var/cache/bind
+    networks:
+        appnetwork:
+          ipv4_address: 192.168.10.105
+
+  newman:
+    image: postman/newman:alpine
+    container_name: newman
+    depends_on:
+      - node
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.106
+    volumes:
+      - ./postman:/etc/newman
+      - ./reports:/etc/newman/reports
+    command: >
+      run /etc/newman/auth_collection.json
+      --environment /etc/newman/environment.json
+      --reporters cli,json
+      --reporter-json-export /etc/newman/reports/newman-report.json
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.107
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      appnetwork:
+        ipv4_address: 192.168.10.108
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+ 
+
+
+networks:
+  appnetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+
+volumes:
+  mongo-data:
+  node_modules:
+  grafana-data:
+
+  

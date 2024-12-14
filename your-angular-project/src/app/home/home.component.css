@@ -1,0 +1,12 @@
+.bg-image{
+    background-image: url('/assets/images/fitbg.png');
+}
+
+.makeWhite h1 , p{
+    color:white;
+}
+
+.uk-card p{
+
+    color: black;
+}

@@ -1,0 +1,75 @@
+
+    <app-menu> </app-menu>
+    <div class="uk-section uk-container uk-text-center">
+        <div class="uk-grid uk-child-width-1-3@s uk-child-width-1-1" uk-grid>
+            <form class="uk-form-stacked" [formGroup]="signupForm" (ngSubmit) ='onSubmit()'>
+
+                <h2>Regisztráció</h2>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Felhasználónév</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" formControlName ="userName" type="text" required='required' placeholder="Felhasználónév...">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Teljes név</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" formControlName ="name" type="text" required='required' placeholder="Név...">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Email</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" formControlName ="email" type="email" required='required' placeholder="Email...">
+                    </div>
+                </div>
+
+           
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Jelszó</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" formControlName ="password" type="password" required='required' placeholder="Jelszó...">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Jelszó újra</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" formControlName ="cpassword" type="password" required='required' placeholder="Jelszó újra...">
+                    </div>
+                </div>
+
+         
+                <div class="uk-margin">
+                    <button class="uk-button uk-button-primary uk-width-1-1 " type="submit">Regisztráció</button>
+                </div>
+
+                <div class="uk-alert-danger" *ngIf='signupForm.get("email")?.invalid && (signupForm.get("email")?.dirty || signupForm.get("email")?.touched)'>
+                    <p  *ngIf='signupForm.get("email")?.errors && signupForm.get("email")?.errors!["required"] '>Kérem adja meg az email címét.</p>
+                    <p  *ngIf='signupForm.get("email")?.errors && signupForm.get("email")?.errors!["email"] '>Kérem megfelelő email címet adjon meg.</p>
+                </div>
+
+                <div *ngIf='signupForm.get("password")?.invalid && (signupForm.get("password")?.dirty || signupForm.get("password")?.touched)' class="uk-alert-danger">
+                   <p  *ngIf='signupForm.get("password")?.errors && signupForm.get("password")?.errors!["required"] '>Kérem adja meg jelszavát.</p>
+                   <p  *ngIf='signupForm.get("password")?.errors && signupForm.get("password")?.errors!["minlenght"] '>A jelszavának legalább 6 karakterből kell állnia</p>
+                </div>
+
+                <div *ngIf='signupForm.get("cpassword")?.invalid && (signupForm.get("cpassword")?.dirty || signupForm.get("cpassword")?.touched)' class="uk-alert-danger">
+                    <p  *ngIf='signupForm.get("cpassword")?.errors && signupForm.get("cpassword")?.errors!["required"] '>Kérem erősítse meg jelszavát.</p>
+                    <p  *ngIf='signupForm.get("cpassword")?.errors && signupForm.get("cpassword")?.errors!["match"] '>A két jelszó nem egyezik meg!</p>
+                </div>
+
+                <div>
+                    <h3>{{regmsg}}</h3>
+                </div>
+
+            </form>
+
+          
+        </div>
+    </div>
+

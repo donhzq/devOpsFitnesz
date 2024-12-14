@@ -1,0 +1,107 @@
+{
+    "info": {
+      "_postman_id": "d2f65c0f-0000-4ca8-9f42-abcdefghijkl",
+      "name": "Auth Tests (Register + Login)",
+      "description": "Regisztráció és bejelentkezés tesztelése a Node szerverre (app/register, app/login).",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Register User",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              { "key": "email", "value": "test@example.com", "type": "text" },
+              { "key": "password", "value": "asd123", "type": "text" },
+              { "key": "name", "value": "admin", "type": "text" },
+              { "key": "userName", "value": "admin", "type": "text" },
+              { "key": "isAdmin", "value": "1", "type": "text" }
+            ]
+          },
+          "url": {
+            "raw": "{{baseUrl}}/app/register",
+            "protocol": "http",
+            "host": [ "{{baseUrl}}" ],
+            "port": "5000",
+            "path": [ "app", "register" ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "// Ellenőrizzük, hogy a status code 200-e (szervered kódja ezt küldi vissza).",
+                "pm.test('Register - status code 200', () => {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "// Ellenőrizhetjük, hogy a response body tartalmaz-e valami user objektumot",
+                "pm.test('Register - van user ID?', () => {",
+                "    const jsonData = pm.response.json();",
+                "    pm.expect(jsonData).to.have.property('_id');",
+                "});"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Login User",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              { "key": "username", "value": "admin", "type": "text" },
+              { "key": "password", "value": "asd123", "type": "text" }
+            ]
+          },
+          "url": {
+            "raw": "{{baseUrl}}/app/login",
+            "protocol": "http",
+            "host": [ "{{baseUrl}}" ],
+            "port": "5000",
+            "path": [ "app", "login" ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "// Ellenőrzés: Login sikeres-e?",
+                "pm.test('Login - status code 200', () => {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "// Ellenőrizheted, hogy a response ad-e vissza user adatok.",
+                "pm.test('Login - user object jött vissza', () => {",
+                "    const data = pm.response.json();",
+                "    pm.expect(data).to.have.property('_id');",
+                "});"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+}

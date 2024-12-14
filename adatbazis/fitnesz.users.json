@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "66412a98fadd284ae996c4a1"
+  },
+  "email": "admin@admin.com",
+  "name": "admin teszt",
+  "userName": "admin",
+  "password": "$2b$10$jgG8j0uY62ETn/EbveOqDuFsQE7H0ruWVzbRWi4IRjk1uqmpeLD2S",
+  "isAdmin": true,
+  "isTrainer": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66412ae4fadd284ae996c4ae"
+  },
+  "email": "teszt@gmail.com",
+  "name": "teszt elek1",
+  "userName": "teszt1",
+  "password": "$2b$10$Sdc27YcvZid6zdRl5WWNLOz3T3vL8FjZRpLC4Ii7ekIDeZPAxdrYO",
+  "isAdmin": false,
+  "isTrainer": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66412afdfadd284ae996c4b0"
+  },
+  "email": "teszt@freemail.hu",
+  "name": "teszt emese",
+  "userName": "teszt2",
+  "password": "$2b$10$O7PUSYwnG/e6WFXqzr3uSefSiHvzkIlNGLFr7fv2CufHV3HdLhKvG",
+  "isAdmin": false,
+  "isTrainer": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66412b13fadd284ae996c4b2"
+  },
+  "email": "edzo@izom.com",
+  "name": "edzo jani",
+  "userName": "edzo1",
+  "password": "$2b$10$R44fPmbsC1aKXHzP.pKExeeKaFcPXpSBXt1x0sYyzJl.IDzGS3yLC",
+  "isAdmin": false,
+  "isTrainer": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66412b29fadd284ae996c4b4"
+  },
+  "email": "gyurok@izom.com",
+  "name": "edzo pista",
+  "userName": "edzo2",
+  "password": "$2b$10$d7REBlgR3jFPHBgpsjwo0.HghPFjjGC/xStC3kDqZzAkLBFbFJZ9u",
+  "isAdmin": false,
+  "isTrainer": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66412b3cfadd284ae996c4b6"
+  },
+  "email": "random@r.com",
+  "name": "random rando",
+  "userName": "random",
+  "password": "$2b$10$bPg.pM4xm9pLgUhSS.cQ6O.mm9T7sFOPuftEN8oHBhbE0dFWOs5t.",
+  "isAdmin": false,
+  "isTrainer": false,
+  "__v": 0
+}]

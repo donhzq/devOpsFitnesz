@@ -1,0 +1,8 @@
+<h2>Figyelem!</h2>
+<mat-dialog-content>
+    <p>Biztos törölni akarja a felhasználót?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Igen</button>
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Nem</button>
+</mat-dialog-actions>

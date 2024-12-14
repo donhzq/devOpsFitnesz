@@ -1,0 +1,37 @@
+
+<app-menu></app-menu>
+
+<div class="uk-overflow-auto" *ngIf="groups && groups.length; else noGroupTemplate">
+    <table class="uk-table uk-table-divider">
+        <thead>
+            <tr>
+                <th>Csoport neve</th>
+                <th>Edző</th>
+                <th>Csoport maximális létszáma</th>
+                <th>Csoport aktuális létszáma</th>
+                <th>Várólista létszáma</th>
+                <th>Csatlakozás a csoporthoz</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let group of groups">
+                <ng-container>
+                    <td>{{group.name}}</td>
+                    <td>{{group.trainer}}</td>
+                    <td>{{group.limit}}</td>
+                    <td>{{group.users.length}}</td>
+                    <td>{{group.quaue.length}}</td>
+
+                    <td><button  (click)="joinGroup(group._id)" [disabled]="!Suser" class="uk-button uk-button-primary">Csatlakozás</button></td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <div class="uk-alert-warning  uk-flex uk-flex-center">
+        <h2>{{msg}}</h2>
+    </div>
+</div>
+<ng-template #noGroupTemplate>
+    <p>Ninscen egy csoport sem</p>
+</ng-template>

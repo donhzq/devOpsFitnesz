@@ -1,0 +1,55 @@
+
+<app-menu></app-menu>
+<h1> Edzők</h1>
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-divider">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>userName</th>
+                <th>Felhasználó törlése</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trainer of trainers">
+                <ng-container *ngIf="trainer._id != Suser?._id">
+                    <td>{{trainer.email}}</td>
+                    <td>{{trainer.name}}</td>
+                    <td>{{trainer.userName}}</td>
+                    <td><button (click)="deleteUser(trainer._id)" class="uk-button uk-button-danger">Törlés</button></td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<h1> Regisztrált felhasználók</h1>
+
+<div class="uk-overflow-auto" *ngIf="nontrainers && nontrainers.length; else noUsersTemplate">
+    <table class="uk-table uk-table-divider">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>userName</th>
+                <th>Felhasználó törlése</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let nontrainer of nontrainers">
+                <ng-container *ngIf="nontrainer._id != Suser?._id">
+                    <td>{{nontrainer.email}}</td>
+                    <td>{{nontrainer.name}}</td>
+                    <td>{{nontrainer.userName}}</td>
+                    <td><button (click)="deleteUser(nontrainer._id)" class="uk-button uk-button-danger">Törlés</button></td>
+                    <td><button (click)="makeTrainer(nontrainer._id)" class="uk-button uk-button-primary">Edzővé tétel</button></td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #noUsersTemplate>
+    <p>No users available.</p>
+</ng-template>

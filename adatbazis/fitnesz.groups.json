@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6641423f103600b1f984d026"
+  },
+  "name": "Box",
+  "trainer": "edzo pista",
+  "limit": 3,
+  "users": [
+    "66412a98fadd284ae996c4a1"
+  ],
+  "quaue": [],
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66414262103600b1f984d034"
+  },
+  "name": "Joga",
+  "trainer": "edzo pista",
+  "limit": 10,
+  "users": [],
+  "quaue": [],
+  "__v": 0
+}]

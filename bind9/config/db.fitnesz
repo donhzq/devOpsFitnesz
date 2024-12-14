@@ -1,0 +1,13 @@
+@   IN  SOA fitnesz. root.fitnesz. (
+            1         ; Serial
+            604800    ; Refresh
+            86400     ; Retry
+            2419200   ; Expire
+            604800 )  ; Negative Cache TTL
+
+; DNS-rekordok
+@       IN  NS  ns1.fitnesz.
+ns1     IN  A   192.168.10.105
+www     IN  A   192.168.10.104
+@       IN  A   192.168.10.104
+fitnesz IN  A   192.168.10.104

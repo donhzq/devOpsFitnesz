@@ -1,0 +1,10 @@
+FROM nginx:alpine
+
+# Másoljuk be a testreszabott Nginx konfigot
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Nginx alapértelmezés szerint a 80-as porton figyel
+EXPOSE 80
+
+# Indítsuk az Nginx-et előtérben
+CMD ["nginx", "-g", "daemon off;"]

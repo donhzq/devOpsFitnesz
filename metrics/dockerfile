@@ -1,0 +1,17 @@
+FROM node:18
+
+# Munkakönyvtár beállítása
+WORKDIR /app
+
+# package.json és metrics.js másolása
+COPY package.json ./
+COPY metrics.js ./metrics.js
+
+# Függőségek telepítése
+RUN npm install
+
+# Port megnyitása
+EXPOSE 5001
+
+# Alkalmazás indítása
+CMD ["node", "metrics.js"]

@@ -1,0 +1,1118 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "d2f65c0f-0000-4ca8-9f42-abcdefghijkl"
+    },
+    "item": [
+      {
+        "id": "bf2e70b3-2f26-46cb-bcaa-b28b6a639e6e",
+        "name": "Register User",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "app",
+              "register"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              {
+                "key": "email",
+                "value": "test@example.com"
+              },
+              {
+                "key": "password",
+                "value": "asd123"
+              },
+              {
+                "key": "name",
+                "value": "admin"
+              },
+              {
+                "key": "userName",
+                "value": "admin"
+              },
+              {
+                "key": "isAdmin",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "ca2be351-89aa-4f61-8191-7380cfbe2e77",
+              "type": "text/javascript",
+              "exec": [
+                "// Ellenőrizzük, hogy a status code 200-e (szervered kódja ezt küldi vissza).",
+                "pm.test('Register - status code 200', () => {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "// Ellenőrizhetjük, hogy a response body tartalmaz-e valami user objektumot",
+                "pm.test('Register - van user ID?', () => {",
+                "    const jsonData = pm.response.json();",
+                "    pm.expect(jsonData).to.have.property('_id');",
+                "});"
+              ],
+              "_lastExecutionId": "4079f703-b85a-47bc-9778-3193bbd6abe1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "8b6b35c8-b3e7-4142-8796-114104c56b9e",
+        "name": "Login User",
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "app",
+              "login"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              {
+                "key": "username",
+                "value": "admin"
+              },
+              {
+                "key": "password",
+                "value": "asd123"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "f64b8250-28c9-49fc-8353-2cac6ad5ec0e",
+              "type": "text/javascript",
+              "exec": [
+                "// Ellenőrzés: Login sikeres-e?",
+                "pm.test('Login - status code 200', () => {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "// Ellenőrizheted, hogy a response ad-e vissza user adatok.",
+                "pm.test('Login - user object jött vissza', () => {",
+                "    const data = pm.response.json();",
+                "    pm.expect(data).to.have.property('_id');",
+                "});"
+              ],
+              "_lastExecutionId": "bcc4ff28-ca07-4a32-ad6c-34212bc56709"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "d2f65c0f-0000-4ca8-9f42-abcdefghijkl",
+      "name": "Auth Tests (Register + Login)",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Regisztráció és bejelentkezés tesztelése a Node szerverre (app/register, app/login).",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2024-12-14T00:00:00.000Z",
+      "postman_exported_using": "Postman/10.x"
+    },
+    "id": "docker-env-guid",
+    "name": "Docker",
+    "values": [
+      {
+        "type": "any",
+        "value": "node",
+        "key": "baseUrl"
+      }
+    ]
+  },
+  "globals": {
+    "id": "d72855ce-9cc8-4cb9-9241-9e95bab9765c",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 4,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 122.5,
+      "responseMin": 88,
+      "responseMax": 157,
+      "responseSd": 34.5,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1734176430656,
+      "completed": 1734176430963
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 2,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "3ea44fd7-e277-4844-85f3-90d6619cc142",
+          "httpRequestId": "93f37b26-c010-4117-bb4e-5866d3587a4e"
+        },
+        "item": {
+          "id": "bf2e70b3-2f26-46cb-bcaa-b28b6a639e6e",
+          "name": "Register User",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "5000",
+              "path": [
+                "app",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email",
+                  "value": "test@example.com"
+                },
+                {
+                  "key": "password",
+                  "value": "asd123"
+                },
+                {
+                  "key": "name",
+                  "value": "admin"
+                },
+                {
+                  "key": "userName",
+                  "value": "admin"
+                },
+                {
+                  "key": "isAdmin",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ca2be351-89aa-4f61-8191-7380cfbe2e77",
+                "type": "text/javascript",
+                "exec": [
+                  "// Ellenőrizzük, hogy a status code 200-e (szervered kódja ezt küldi vissza).",
+                  "pm.test('Register - status code 200', () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Ellenőrizhetjük, hogy a response body tartalmaz-e valami user objektumot",
+                  "pm.test('Register - van user ID?', () => {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('_id');",
+                  "});"
+                ],
+                "_lastExecutionId": "4079f703-b85a-47bc-9778-3193bbd6abe1"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "app",
+              "register"
+            ],
+            "host": [
+              "node"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "ebfcc9cf-4399-47b5-8d6c-da8d706d0697",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "node:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "76",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              {
+                "key": "email",
+                "value": "test@example.com"
+              },
+              {
+                "key": "password",
+                "value": "asd123"
+              },
+              {
+                "key": "name",
+                "value": "admin"
+              },
+              {
+                "key": "userName",
+                "value": "admin"
+              },
+              {
+                "key": "isAdmin",
+                "value": "1"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "da1ab9e5-513f-4b40-8ee5-34f9a41cb256",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "210"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"d2-wZ4htqmGlHj+5oheegEKCBWAsCA\""
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 14 Dec 2024 11:40:30 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              116,
+              101,
+              115,
+              116,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              97,
+              100,
+              109,
+              105,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              97,
+              100,
+              109,
+              105,
+              110,
+              34,
+              44,
+              34,
+              112,
+              97,
+              115,
+              115,
+              119,
+              111,
+              114,
+              100,
+              34,
+              58,
+              34,
+              36,
+              50,
+              98,
+              36,
+              49,
+              48,
+              36,
+              47,
+              82,
+              103,
+              85,
+              83,
+              97,
+              73,
+              120,
+              86,
+              117,
+              83,
+              88,
+              121,
+              84,
+              50,
+              117,
+              81,
+              46,
+              89,
+              111,
+              109,
+              101,
+              57,
+              98,
+              86,
+              106,
+              65,
+              51,
+              83,
+              117,
+              111,
+              104,
+              81,
+              47,
+              52,
+              103,
+              83,
+              85,
+              70,
+              121,
+              120,
+              84,
+              98,
+              77,
+              69,
+              85,
+              120,
+              109,
+              89,
+              102,
+              119,
+              108,
+              71,
+              34,
+              44,
+              34,
+              105,
+              115,
+              65,
+              100,
+              109,
+              105,
+              110,
+              34,
+              58,
+              116,
+              114,
+              117,
+              101,
+              44,
+              34,
+              105,
+              115,
+              84,
+              114,
+              97,
+              105,
+              110,
+              101,
+              114,
+              34,
+              58,
+              102,
+              97,
+              108,
+              115,
+              101,
+              44,
+              34,
+              95,
+              105,
+              100,
+              34,
+              58,
+              34,
+              54,
+              55,
+              53,
+              100,
+              54,
+              101,
+              97,
+              101,
+              49,
+              57,
+              101,
+              51,
+              55,
+              98,
+              52,
+              55,
+              53,
+              55,
+              51,
+              52,
+              50,
+              48,
+              56,
+              102,
+              34,
+              44,
+              34,
+              95,
+              95,
+              118,
+              34,
+              58,
+              48,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 157,
+          "responseSize": 210
+        },
+        "id": "bf2e70b3-2f26-46cb-bcaa-b28b6a639e6e",
+        "assertions": [
+          {
+            "assertion": "Register - status code 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Register - van user ID?",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "fe274919-2f01-4026-8c76-4f2bce41db5f",
+          "length": 2,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "1f156ad3-45b6-4cad-8ca0-7ea559871228"
+        },
+        "item": {
+          "id": "8b6b35c8-b3e7-4142-8796-114104c56b9e",
+          "name": "Login User",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "port": "5000",
+              "path": [
+                "app",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "admin"
+                },
+                {
+                  "key": "password",
+                  "value": "asd123"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f64b8250-28c9-49fc-8353-2cac6ad5ec0e",
+                "type": "text/javascript",
+                "exec": [
+                  "// Ellenőrzés: Login sikeres-e?",
+                  "pm.test('Login - status code 200', () => {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Ellenőrizheted, hogy a response ad-e vissza user adatok.",
+                  "pm.test('Login - user object jött vissza', () => {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.have.property('_id');",
+                  "});"
+                ],
+                "_lastExecutionId": "bcc4ff28-ca07-4a32-ad6c-34212bc56709"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "app",
+              "login"
+            ],
+            "host": [
+              "node"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d8dae57d-5058-4b94-b547-bfdefc2e63b0",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "node:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "30",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "urlencoded",
+            "urlencoded": [
+              {
+                "key": "username",
+                "value": "admin"
+              },
+              {
+                "key": "password",
+                "value": "asd123"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "38db58f4-f42b-495f-a742-e439b652ee4b",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "210"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"d2-TnjC+ndOmBSjStx7Tozj8n8ukSU\""
+            },
+            {
+              "key": "Set-Cookie",
+              "value": "connect.sid=s%3A43KEI-FzSjohsxp6xMJlGIY4HrStP0ax.V%2FnQY35g0b4Q5MLGASosyp2vdnFDvIf1wEC%2FS58%2FYYg; Path=/; HttpOnly"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 14 Dec 2024 11:40:30 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              95,
+              105,
+              100,
+              34,
+              58,
+              34,
+              54,
+              55,
+              53,
+              100,
+              54,
+              49,
+              100,
+              99,
+              99,
+              51,
+              52,
+              100,
+              102,
+              98,
+              51,
+              52,
+              56,
+              99,
+              49,
+              99,
+              97,
+              51,
+              50,
+              52,
+              34,
+              44,
+              34,
+              101,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              116,
+              101,
+              115,
+              116,
+              64,
+              101,
+              120,
+              97,
+              109,
+              112,
+              108,
+              101,
+              46,
+              99,
+              111,
+              109,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              97,
+              100,
+              109,
+              105,
+              110,
+              34,
+              44,
+              34,
+              117,
+              115,
+              101,
+              114,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              97,
+              100,
+              109,
+              105,
+              110,
+              34,
+              44,
+              34,
+              112,
+              97,
+              115,
+              115,
+              119,
+              111,
+              114,
+              100,
+              34,
+              58,
+              34,
+              36,
+              50,
+              98,
+              36,
+              49,
+              48,
+              36,
+              81,
+              122,
+              75,
+              90,
+              83,
+              87,
+              79,
+              88,
+              54,
+              100,
+              79,
+              114,
+              119,
+              121,
+              82,
+              110,
+              80,
+              99,
+              50,
+              108,
+              73,
+              101,
+              52,
+              83,
+              74,
+              110,
+              78,
+              119,
+              47,
+              70,
+              119,
+              53,
+              84,
+              118,
+              99,
+              76,
+              69,
+              109,
+              113,
+              85,
+              101,
+              100,
+              86,
+              50,
+              49,
+              107,
+              81,
+              101,
+              115,
+              122,
+              122,
+              105,
+              109,
+              34,
+              44,
+              34,
+              105,
+              115,
+              65,
+              100,
+              109,
+              105,
+              110,
+              34,
+              58,
+              116,
+              114,
+              117,
+              101,
+              44,
+              34,
+              105,
+              115,
+              84,
+              114,
+              97,
+              105,
+              110,
+              101,
+              114,
+              34,
+              58,
+              102,
+              97,
+              108,
+              115,
+              101,
+              44,
+              34,
+              95,
+              95,
+              118,
+              34,
+              58,
+              48,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 88,
+          "responseSize": 210
+        },
+        "id": "8b6b35c8-b3e7-4142-8796-114104c56b9e",
+        "assertions": [
+          {
+            "assertion": "Login - status code 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Login - user object jött vissza",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 420
+    },
+    "failures": [],
+    "error": null
+  }
+}
